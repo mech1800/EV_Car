@@ -61,3 +61,135 @@
 ・見えるものから見えないものを推定することは可能か？
 
 ・手術ロボットで欲しい。鉗子の先端のセンサ化をしたい。
+
+
+
+英語解答集
+
+limitation系
+・複雑な材質に対しても推定を行うことは可能ですか？complex materials, infer
+→はい。この手法では複雑な材質かどうかは問題ではない。
+it does not matter whether
+→学習とテストで材料の分布が同じことが大事。
+it is important that
+
+
+・異なる材質に対しても推定を行うことは可能ですか？different materials
+→現段階ではいいえ。なぜなら、学習とテストで材料の分布が同じを想定してるから。
+at the current model
+it is assumed
+→今回は材料があるかないかの01でラベリングした。しかし、どんな材料かラベリングすれば、異なる材料を予測できると思う。
+desigh
+
+
+・意図的に力を入れないような状況には対処できる？intensionally
+→理論的には変形してないなら力は出てこないはず。
+in theory
+→しかし、実践的には画像処理のノイズによってわずかな値が出ると思う。ハイパスフィルターで対応できる。
+in practice
+
+
+・斜めから見た場合はこの手法は使えるの？
+different angle, from an angle
+→今回の研究では2次元に近似できる状況に限定した。
+limit the situation, can be considered
+→斜めについては、フル3Dオブジェクトの拡張で3次元の形状として入力するのが良い。
+is not considered
+
+
+・人以外にも適用できる？
+→はい。この研究の最も基本的なパーツは、変形後、オリジナル、接触位置です。なので人に限定されません。
+consist of, is not probrem whether
+it does not matter
+→私たちはまさにロボットの触覚センサーの代わりのセンサーとして使えると考えています。
+can be used for
+
+
+・学習データを作成してモデルを学習させるから導入コストは高いんじゃないの？
+→実は椅子データセットの作成は数分の動画からほとんど自動で作成しています。とても簡単。
+actually, automatically created
+→モデルを学習時間に関しては、もちろんpcのスペックによるが、今回の学習であればそんなにかからない。
+of course, depend on, doesn't take much time
+→ミドルクラスのgpu1枚でだと5時間くらいかかった。
+take 5 hours
+→なので私は、ハードウェアはもちろん、ソフトウェアの面でもコストが低いと考えています。
+of course A is , but B is also
+
+
+手法に対する疑問
+・なぜ変形に着目したのか
+→変形が力の情報を持っているという仮説があったからです。
+we have a hypothsis that
+→簡単なケースではフックの法則は変形と力の関係を説明する。
+in easy case
+→複雑なケースではFEMの変異解析で力を計算できる。
+in complex case
+
+
+・3次元の体圧分布センサーの値をどのようにして2次元にしたの？
+→その通り、そのままでは使えない。
+cannot be used, without preprocess
+→手前方向に足し合わせることで2次元にした。
+add sensor value in the depth direction
+
+
+・テストデータと学習データはどのように分けた？
+→学習データとテストデータの比は9:1にしました。一般的なホールドアウト法の考え方です。
+ratio of 9:1
+
+
+・FEMデータセットと椅子データセットで境界条件が違うのは問題ないのか？
+→FEMのようなシミュレーションでは、一般的に現実と完全に同じにすることはできないです。
+reflect real world
+→しかし、今回の実験では差分を少なくすることができていると思います。なぜなら、椅子の下のサイドは動かないようにして使用したからです。
+make the gap sufficiently small
+→だから、FEMだけでなく、よりリアルなシチュエーションの実験を行いました。
+implement a experiment
+
+
+その他
+・結局精度と汎用性はどうなの？使えるの？
+→6%や19%という値は汎化性能としてポジティブに考えている。
+as a generalization performance
+→しかし、実用性を評価するなら、フル3Dでの実験を行わなければならないと考えている。
+as a practical performance,
+
+
+・許容誤差と平均誤差を比べるのは間違っているのでは？
+・許容誤差はデータをとるときに入ってくるので、学習したモデルの精度は許容誤差と平均誤差を足したものになるのではないか？
+→平均的な誤差はセンサのカタログに載っていないため代わりに持ってきた。あくまで参考です。
+is not listed in, just for reference
+
+
+・19%って悪くない？
+→プレゼンしたように、ロードセルのような超精密な測定には使えないが、圧力センサのように傾向を確認するのには使えると思う。
+as I explained in the, understanding 〜 is
+→将来的にはプレゼンテーションしたように改善はしていきたい。
+
+
+・どういった誤差が考えられる？
+→形状の取得、接触位置の曖昧さ、力センサのピーク値など。
+is responsible for
+
+
+・横から見ただけだと厳密な形状ではないよね？
+→今回の研究では2次元に近似できる状況に限定した。
+limit the situation where
+→あなたが言った状況(斜め)については、フル3Dオブジェクトの拡張で3次元の形状として入力するのが良い。
+situation what you said
+
+
+・何に使いますか？
+→高齢者を一般家庭でモニタリングするときに使える。大きなメリットは一般的なプロダクトをセンサに変えることができる点です、これは、実験施設のようなスペシャルな環境ではなく、一般家庭のようなノーマルな環境で使用するべきでしょう。
+
+It can be used to monitor elderly people at home. The big advantage is that common products can be turned into sensors. This sensor should be used in a normal environment like a home, not in a special environment like a laboratory.
+
+
+only elastic deformation?
+今のモデルではそう
+変形を拡大して見やすくするモデルもある
+統合すれば対応できるかも
+
+hysteresis dumps?
+今のモデルではhysteresis dumpsが起こらないようにシチュエーションをリミットしてる
+しかし、lstmやsequencial dataを使えばダイナミックな状況にも対応できる
