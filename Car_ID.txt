@@ -1,3 +1,48 @@
+何に応用できますか？
+生活環境での高齢者の身体機能の分析や医療ロボットの触覚センサとしてそれは利用できる。
+しかし現在の精度では医療ロボットなど高精度が必要なアプリケーションには使うことは難しい。
+応用先を増やすために、誤差を排除して、精度を向上する必要がある。
+it can be used to
+at the current accuracy
+in order to, it is necessary
+
+今回の精度は良いの？悪いの？
+These errors are a bit higher than ultra-high-precision sensors such as load cells. However, they are within the acceptable range for a pressure sensor.
+
+汎化性能はどのくらい？ generalization performance
+同じ素材、同じカメラの角度でモデルを使うことができる。
+model can be used as long as
+学習時と推論時に素材が違くても推論できるか？
+できない。素材が同じ状況に限定しているから。
+しかしラベルの付け方を変えて対応することができる。
+現在は素材を1、素材なしを0としている。将来的には木を0、鉄を1、ゴムを2のようにする。
+limit the situation where, deal with
+
+学習時と推論時でカメラの角度が違くても推論できるか？
+できない。同じカメラの角度で使われる状況に限定しているから。
+しかしながら、画像再構成の技術で学習の時の角度に変えれば対応できる。
+change A into B
+
+モデルの学習にらどのくらいの時間がかかるのですか？
+もちろん学習時間はPCのパフォーマンスによるが、そんなに多くの時間はかからない。
+ミドルクラスのGPUで5時間だった。
+of course, depend on, doesn't take much time
+
+スライド作成するもの
+誤差要因に対する対策は何かあるか？
+損失関数は何ですか？
+
+便利フレーズ
+it doesn't matter whether
+it is important that
+in theory, in practice
+in easy case, in complex case
+is not considered
+consist of
+of course
+
+
+
 想定質問
 ・セマンティックセグメンテーションで形状取得しないの？
 　→教師ありセマンティックセグメンテーションは学習データに含まれるラベルしか抽出しない。ただ精度はまだまだだが教師なしセマンティックセグメンテーションも出てきているので、そうした技術は積極的に使っていきたい。
